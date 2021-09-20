@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
   let btn = document.createElement("button");
-  btn.innerHTML = "Add Square";
+  btn.innerText = "Add Square";
   document.body.appendChild(btn);
 
   btn.addEventListener("click", addSquare);
@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", function () {
       square.appendChild(squareHover);
     });
     squareHover.addEventListener("mouseout", function () {
-      squareHover.style.display = "none";
+      square.textContent = " ";
     });
 
     square.addEventListener("click", function () {
@@ -44,25 +44,24 @@ window.addEventListener("DOMContentLoaded", function () {
 
     let currentCount = square.getAttribute("id");
     square.addEventListener("dblclick", function () {
-      
       let nextSquare = square.nextSibling;
       let previousSquare = square.previousSibling;
-      if (nextSquare != undefined) {
-        if (currentCount % 2 == 0) {
+
+      if (currentCount % 2 == 0) {
+        if (nextSquare) {
           nextSquare.remove();
-        }
-      } else {
-        alert("There isn't a next square");
-      }
-      if (previousSquare != undefined && previousSquare != btn){
-
-        if (currentCount % 2 == 1){
-            previousSquare.remove();
         } else {
-            alert("There isn't a previous square.")
+          alert("There isn't a next square");
+        }
+      } 
+    
+        if (currentCount % 2 == 1) {
+          if (previousSquare) {
+            previousSquare.remove();
+          } else {
+          alert("There isn't a previous square.");
         }
       }
-
     });
   }
 });
